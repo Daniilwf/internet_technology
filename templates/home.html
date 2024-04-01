@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Новостной веб-сайт{% endblock %}
+
+{% block content %}
+<section id="main-news" class="main-news">
+    {% for article in main_news %}
+    <article>
+        <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        <h2>{{ article.headline }}</h2>
+        <p>{{ article.description }}</p>
+    </article>
+    {% endfor %}
+</section>
+
+<section id="main-events" class="main-events">
+    {% for event in main_events %}
+    <article>
+        <a href="{% url 'event_detail' event.id %}">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            <h2>{{ event.title }}</h2>
+            <p>{{ event.description }}</p>
+        </a>
+    </article>
+    {% endfor %}
+</section>
+
+<section id="popular-categories" class="popular-categories">
+    <h2>Популярные категории</h2>
+    <ul>
+        {% for category in popular_categories %}
+        <li><a href="#">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

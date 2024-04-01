@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<section id="event-detail">
+    <h2>{{ event.title }}</h2>
+    <p>{{ event.description }}</p>
+    <p>Date: {{ event.date }}</p>
+    <p>Address: {{ event.address }}</p>
+
+    <div id="map" style="height: 600px; width: 600px;"></div>
+    <script>
+        var map = L.map('map').setView([{{ event.latitude }}, {{ event.longitude }}], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        L.marker([{{ event.latitude }}, {{ event.longitude }}]).addTo(map)
+    </script>
+
+</section>
+{% endblock %}
+
+{% comment %}{% block scripts %}
+    {{ block.super }}
+    <script>
+        const eventCoordinates = [undefined{{ event.latitude }}, {{ event.longitude }}];
+        const map = L.map('map').setView(eventCoordinates, 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        const marker = L.marker(eventCoordinates).addTo(map);
+        marker.bindPopup("<b>{{ event.title }}</b><br>{{ event.description }}").openPopup();
+    </script>
+{% endblock %}{% endcomment %}

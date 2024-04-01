@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Новостной веб-сайт{% endblock %}
+
+{% block content %}
+<section id="main-news" class="main-news">
+    {% for event in main_events %}
+    <article>
+        <a href="{% url 'event_detail' event.id %}">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            <h2>{{ event.title }}</h2>
+            <p>{{ event.description }}</p>
+        </a>
+    </article>
+    {% endfor %}
+</section>
+
+{% endblock %}

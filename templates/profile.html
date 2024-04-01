@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Профиль пользователя</h2>
+  <p>Привет, {{ user.username }}!</p>
+  <!-- Дополнительная информация о пользователе -->
+  {% if user.profile.photo %}
+    <img src="{{ user.profile.photo.url }}" alt="Profile Photo">
+  {% endif %}
+{% endblock %}
