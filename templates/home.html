@@ -26,9 +26,9 @@
 
 <section id="popular-categories" class="popular-categories">
     <h2>Популярные категории</h2>
-    <ul>
+    <ul class="category-list">
         {% for category in popular_categories %}
-        <li><a href="#">{{ category.name }}</a></li>
+            <li><a href="{% url 'articles_by_category' category.id %}">{{ category.name }}</a></li>
         {% endfor %}
     </ul>
 </section>

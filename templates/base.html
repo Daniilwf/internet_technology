@@ -21,8 +21,8 @@
     <nav>
         <a href="{% url 'main' %}">Новости</a>
         <a href="{% url 'event_list' %}">Главные события</a>
-        <a href="#popular-categories">Популярные категории</a>
-        <a href="#about">О нас</a>
+        <a href="{% url 'categories' %}">Популярные категории</a>
+        <a href="{% url 'about' %}">О нас</a>
         <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i></a>
         <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i></a>
         {% if user.is_authenticated %}
@@ -37,7 +37,7 @@
 </main>
 
 <footer>
-    <a href="#about">О нас</a>
+    <a href="{% url 'about' %}">О нас</a>
     <div class="social-links">
         <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
         <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>

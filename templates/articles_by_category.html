@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Новости в категории {{ category.name }}{% endblock %}
+
+{% block content %}
+<section id="category-articles">
+    <h2>Новости в категории: {{ category.name }}</h2>
+    {% if articles %}
+        <ul class="articles-list">
+            {% for article in articles %}
+                <article>
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                    <h2>{{ article.headline }}</h2>
+                    <p>{{ article.description }}</p>
+                </article>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>В этой категории пока нет новостей.</p>
+    {% endif %}
+</section>
+{% endblock %}

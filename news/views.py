@@ -17,7 +17,8 @@ def news_list(request):
     main_news = Article.objects.all()
     popular_categories = Category.objects.all()
     main_events = Event.objects.all()
-    return render(request, 'home.html', {'main_news': main_news, 'popular_categories': popular_categories, 'main_events': main_events})
+    return render(request, 'home.html',
+                  {'main_news': main_news, 'popular_categories': popular_categories, 'main_events': main_events})
 
 
 def event_list(request):
@@ -90,3 +91,18 @@ def user_logout(request):
 def event_detail(request, event_id):
     event = Event.objects.get(id=event_id)
     return render(request, 'event.html', {'event': event})
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
+def articles_by_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    articles = Article.objects.filter(category=category)
+    return render(request, 'articles_by_category.html', {'category': category, 'articles': articles})
+
+
+def categories(request):
+    category = Category.objects.all()
+    return render(request, 'categories.html', {'categories': category})
